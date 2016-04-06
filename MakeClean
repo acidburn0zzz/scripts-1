@@ -1,3 +1,6 @@
 #!/bin/bash
+{
 rm -rf *.cmake Makefile CMakeCache.txt CMakeFiles *.a
+}&>/dev/null
+
 exit 0
