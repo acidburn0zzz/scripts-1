@@ -1,0 +1,3 @@
+#!/bin/bash
+rm -rf *.cmake Makefile CMakeCache.txt CMakeFiles *.a
+exit 0
