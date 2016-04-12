@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /media/psf/Home/Documents/projects/
+exit 0
