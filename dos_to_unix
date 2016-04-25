@@ -2,5 +2,6 @@
 
 (tr -d "\r" < "$1") > "$1.new"
 mv "$1.new" "$1"
+rm "$1.new"
 
 exit 0
