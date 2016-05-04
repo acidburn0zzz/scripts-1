@@ -1,10 +1,10 @@
 #!/bin/bash
-{
-find . -name "*.cmake" -type f -print0 | xargs -0 /bin/rm -f
-find . -name "*.a" -type f -print0 | xargs -0 /bin/rm -rf -f
-find . -name "*Makefile" -type f -print0 | xargs -0 /bin/rm -f
-find . -name "CMakeCache.txt" -type f -print0 | xargs -0 /bin/rm -f
-find . -name "CMakeFiles" -type f -print0 | xargs -0 /bin/rm -f
-}&>/dev/null
+
+find . -perm +100 -type f -delete
+
+find . -name "Makefile" -type f -delete
+find . -name "CMakeLists" -type d -delete
+find . -name "*.cmake" -type f -delete
+find . -name "*.a" -type f -delete
 
 exit 0
