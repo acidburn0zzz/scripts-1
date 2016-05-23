@@ -1,7 +1,5 @@
 #!/bin/bash
 
-MakeClean
-
 {
 	git add --all :/ &&\
 	git commit -m "$1" &&\
