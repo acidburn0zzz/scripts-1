@@ -4,6 +4,6 @@
 	git add --all :/ &&\
 	git commit -m "$1" &&\
 	git push -u origin master
-}&>/dev/null
+}>/dev/null
 
 exit 0
