@@ -1,9 +1,10 @@
 #!/bin/bash
 
-find . -perm +100 -type f -delete
+find . -perm 100 -type f -delete
 
 find . -name "Makefile" -type f -delete
-find . -name "CMakeLists" -type d -delete
+find . -name "CMakeCache" -type f -delete
+find . -name "CMakeFiles" -type d -delete
 find . -name "*.cmake" -type f -delete
 find . -name "*.a" -type f -delete
 
