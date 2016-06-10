@@ -1,11 +1,16 @@
-#!/bin/bash
+#!/bin/zsh
 
-find . -perm 100 -type f -delete
+for i ($@) do
+	case $i in
+	--force)  rmeach Makefile              ;;
+	--noexec) rmexec                       ;;
+	*)        echo 'Unknown param'; exit   ;;
+	esac
+done
 
-find . -name "Makefile" -type f -delete
-find . -name "CMakeCache.txt" -type f -delete
-find . -name "CMakeFiles" -type d -exec rm -rf "{}" \;
-find . -name "*.cmake" -type f -delete
-find . -name "*.a" -type f -delete
+rmeach CMakeFiles
+rmeach *.cmake
+rmeach CMakeCache.txt
+rmeach *.a
 
-exit 0
+exit

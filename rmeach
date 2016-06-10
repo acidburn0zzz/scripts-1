@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+for i (**/$1) rm -rf $i;
+exit 0;
