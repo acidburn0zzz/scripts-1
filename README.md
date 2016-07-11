@@ -1,11 +1,11 @@
 # Scripts
 To install, cd the directory of cloned repository and execute:
     
-    python ./install.py
+    sudo python ./install.py
 
 To uninstall, cd the directory of cloned repository and execute:
 
-    python ./uninstall.py
+    sudo python ./uninstall.py
 
 Dependencies:
 - GitCommit & GitSync scripts require 'git' package for usage
