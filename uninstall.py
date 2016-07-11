@@ -30,7 +30,10 @@ def needsDeinstallation():
 
 def processDeinstallation():
     if needsDeinstallation():
+        print('Restoring bash profile...')
         restoreBashProfile()
+
+        print('Cleaning setup...')
         cleanupSetup()
     pass
 

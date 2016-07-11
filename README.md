@@ -3,9 +3,9 @@ To install, cd the directory of cloned repository and execute:
     
     python ./install.py
 
-or
+To uninstall, cd the directory of cloned repository and execute:
 
-    ./install.py
+    python ./uninstall.py
 
 Dependencies:
 - GitCommit & GitSync scripts require 'git' package for usage
