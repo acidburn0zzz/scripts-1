@@ -1,69 +1,89 @@
 import os
-import platform
-import subprocess
 import shutil
+import scripting
 
 installation_directory = '/etc/bezzubtsev-shell-scripts/'
 installation_flag = installation_directory + 'installed'
+bash_profile_copy = installation_directory + 'shell-script'
 
-def touch(path):
-    open(path, 'a').close()
-    pass
+step = 0
 
 def getScriptsDirectory():
-    return os.path.dirname(os.path.realpath(__file__))
-
-def executeShellCommand(cmd):
-    subprocess.call(cmd)
-    pass
-
-def getHomeDirectory():
-    return os.path.expanduser('~') + '/'
-
-def createSymbolicLink(src, dest):
-    executeShellCommand(['ln', '-s', src, dest])
-    pass
-
-def ensureDirectory(directory):
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-    pass
+	return scripting.getFileDirectory(__file__)
 
 def getBashConfigurationFile():
-    if platform.system() == 'Linux':
-        return getHomeDirectory() + '.bashrc'
-    else:
-        return getHomeDirectory() + '.bash_profile'
+	scripting.check4compatiblity()
+	if scripting.getOSName() == scripting.linux():
+		return scripting.getHomeDirectory() + '.bashrc'
+	elif scripting.getOSName() == scripting.os_x():
+		return scripting.getHomeDirectory() + '.bash_profile'
+	pass
 
 def writePathData():
-    profile = open(getBashConfigurationFile(), 'a')
-    profile.write('\n# Inserted automatically by scripts installer\nexport PATH=' + getHomeDirectory() + 'bin:$PATH\n')
-    profile.close()
-    pass
+	profile = open(getBashConfigurationFile(), 'a')
+	profile.write('\n# Inserted automatically by scripts installer\nexport PATH=' + scripting.getHomeDirectory() + 'bin:$PATH\n')
+	profile.close()
+	pass
 
 def needsInstallation():
-    return not os.path.exists(installation_flag)
+	return not os.path.exists(installation_flag)
 
 def copyBashProfile():
-    shutil.copyfile(getBashConfigurationFile(), installation_directory + 'shell-setup')
-    pass
+	shutil.copyfile(getBashConfigurationFile(), bash_profile_copy)
+	pass
+
+
+def undoStep(identifier):
+	undo = {
+		0: shutil.rmtree(installation_directory),
+		1: shutil.move(bash_profile_copy, getBashConfigurationFile()),
+		2: os.remove(installation_flag),
+		3: os.remove(scripting.getHomeDirectory() + 'bin'),
+		4: {}
+	}
+
+	if identifier < 0 or identifier > 4:
+		return
+	else:
+		undo[identifier]()
+	pass
+
+def undoChanges():
+	global step
+
+	for i in range(step, 0):	
+		undoStep(i)
+	pass
 
 def processInstallation():
-    if needsInstallation():
-        print('Ensuring ' + installation_directory + 'directory...')
-        ensureDirectory(installation_directory)
- 
-        print('Copying bash profile...')
-        copyBashProfile()
+	global step
 
-        print('Marking installation flags...')
-        touch(installation_flag)
+	try:
+		if needsInstallation():
+			print('Ensuring ' + installation_directory + 'directory...')
+			scripting.ensureDirectory(installation_directory)
+ 			step += 1
 
-        print('Linking ' + getHomeDirectory() + ' to ' + getScriptsDirectory() + '...')
-        createSymbolicLink(getScriptsDirectory(), getHomeDirectory() + 'bin')
+			print('Copying bash profile...')
+			copyBashProfile()
+			step += 1
 
-        print('Writing path data...')
-        writePathData()
-    pass
+			print('Marking installation flags...')
+			scripting.touch(installation_flag)
+			step += 1
+
+			print('Linking ' + getScriptsDirectory() + ' to ' + scripting.getHomeDirectory() + 'bin/ ...')
+			scripting.createSymbolicLink(getScriptsDirectory(), scripting.getHomeDirectory() + 'bin')
+			step += 1
+
+			print('Writing path data...')
+			writePathData()
+			step += 1
+		else:
+			print('Installation is not needed, skipping...')
+	except Exception as data:
+		print('An exception was caught due installation: ', data)
+		undoChanges()
+	pass
 
 processInstallation()
