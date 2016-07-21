@@ -11,7 +11,7 @@ def processInstallation():
 		if needsInstallation():
 			print('Ensuring ' + installer.installation_directory + 'directory...')
 			scripting.ensureDirectory(installer.installation_directory)
- 			step += 1
+			step += 1
 
 			print('Copying bash profile...')
 			installer.copyBashProfile()
