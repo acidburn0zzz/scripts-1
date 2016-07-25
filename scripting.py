@@ -22,7 +22,7 @@ def getOSName():
 
 def getFileDirectory(path):
 	check4compatiblity()
-	return os.path.dirname(os.path.realpath(path))
+	return os.path.dirname(os.path.realpath(path)) + '/'
 
 def touch(path):
 	check4compatiblity()
