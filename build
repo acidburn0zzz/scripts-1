@@ -1,5 +1,7 @@
 #!/bin/bash
 
+for  
+
 cmake ./ && make;
 
 exit 0

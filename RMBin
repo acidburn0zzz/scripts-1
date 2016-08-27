@@ -1,5 +1,0 @@
-#!/bin/bash
-
-find . -perm +100 -type f -delete
-
-exit 0

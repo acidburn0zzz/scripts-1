@@ -2,9 +2,9 @@
 
 for i ($@) do
 	case $i in
-	--force)  rmeach Makefile              ;;
-	--noexec) rmexec                       ;;
-	*)        echo 'Unknown param'; exit   ;;
+	--force)  rmeach Makefile                          ;;
+	--noexec) rmexec                                   ;;
+        *)        echo "Unknown parameter \"${i}\""; exit   ;;
 	esac
 done
 
