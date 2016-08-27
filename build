@@ -1,12 +1,18 @@
 #!/bin/zsh
 
+CMAKEDONE=false
+
 for i ($@) do
        case $i in
-       Debug)   cmake . -DBUILD_MODE=Debug              ;;
-       Release) cmake . -DBUILD_MODE=Release            ;;
-       *)       echo "Unknown parameter \"${i}\""; exit ;;
+       Debug)   CMAKEDONE=true; cmake . -DBUILD_MODE=Debug              ;;
+       Release) CMAKEDONE=true; cmake . -DBUILD_MODE=Release            ;;
+       *)       echo "Unknown parameter \"${i}\""; exit                   ;;
        esac
 done
+
+if [ ! CMAKEDONE ]; then
+	cmake .;
+fi
 
 make
 
