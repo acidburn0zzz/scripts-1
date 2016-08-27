@@ -1,7 +1,13 @@
-#!/bin/bash
+#!/bin/zsh
 
-for  
+for i ($@) do
+       case $i in
+       Debug)   cmake . -DBUILD_MODE=Debug              ;;
+       Release) cmake . -DBUILD_MODE=Release            ;;
+       *)       echo "Unknown parameter \"${i}\""; exit ;;
+       esac
+done
 
-cmake ./ && make;
+make
 
 exit 0
