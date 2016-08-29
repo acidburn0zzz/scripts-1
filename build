@@ -6,7 +6,7 @@ for i ($@) do
        case $i in
        Debug)   CMAKEDONE=true; cmake . -DBUILD_MODE=Debug              ;;
        Release) CMAKEDONE=true; cmake . -DBUILD_MODE=Release            ;;
-       *)       echo "Unknown parameter \"${i}\""; exit                   ;;
+       *)       echo "Unknown parameter \"${i}\""; exit                 ;;
        esac
 done
 
