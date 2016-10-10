@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+{
 for i ($@) do
 	case $i in
 	--force)  rmeach Makefile                          ;;
@@ -11,6 +12,8 @@ done
 rmeach CMakeFiles
 rmeach *.cmake
 rmeach CMakeCache.txt
-rmeach *.a
+rmeach Debug
+rmeach Release
+}&>/dev/null
 
 exit
