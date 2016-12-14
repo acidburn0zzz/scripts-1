@@ -1,9 +1,0 @@
-#!/bin/bash
-
-{
-	git add --all :/ &&\
-	git commit -m "$1" &&\
-	git push -u origin master
-}>/dev/null
-
-exit 0

@@ -1,7 +1,0 @@
-#!/bin/bash
-
-sudo rm -rf ~/Library/Caches
-sudo rm -rf /Library/Caches
-sudo shutdown -r now
-
-exit 0
