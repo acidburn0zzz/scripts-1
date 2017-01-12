@@ -1,5 +1,0 @@
-#!/bin/bash
-
-find . -type f -executable -exec rm '{}';
-
-exit 0;
