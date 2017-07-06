@@ -1,6 +1,0 @@
-#!/bin/zsh
-
-for i (**/$1) rm -rf $i;
-rm -rf $1;
-
-exit 0;

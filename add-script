@@ -1,4 +1,0 @@
-#!/bin/sh
-
-cp $1 /usr/local/sbin/$1
-chmod a+rwx /usr/local/sbin/$1

@@ -1,7 +1,0 @@
-#!/bin/zsh
-
-for i ($@) do
-	lame $i
-done
-
-exit

@@ -1,4 +1,0 @@
-#!/bin/zsh
-
-for i (**/*.djvu(D)) {echo "$i\n"; ddjvu -format=pdf $i{,.pdf};}
-exit;
