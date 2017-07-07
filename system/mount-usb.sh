@@ -73,3 +73,9 @@ unmount_device() {
 		fi
 	done
 }
+
+case ${ACTION} in
+	add)    mount_device   ;;
+	remove) unmount_device ;; 
+	*)      usage          ;;
+esac
