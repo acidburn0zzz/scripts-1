@@ -1,0 +1,3 @@
+[submodule "aut"]
+	path = aut
+	url = https://github.com/Andrew-Bezzubtsev/aut.git
